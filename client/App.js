@@ -6,14 +6,17 @@ import { Provider } from "react-redux";
 import { createStore } from "redux";
 
 // import reducers
-import reducers from "./reducers";
+import reducers from "./src/reducers";
+
+// components
+import { Header } from "./src/components/common";
 
 export default class App extends React.Component {
   render() {
     return (
       <Provider store={createStore(reducers)}>
         <View style={styles.container}>
-          <Text>TEST</Text>
+          <Header headerText="Tech Stack" />
         </View>
       </Provider>
     );
@@ -22,9 +25,9 @@ export default class App extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
+    flex: 1
+    // backgroundColor: "#fff",
+    // alignItems: "center",
+    // justifyContent: "center"
   }
 });
