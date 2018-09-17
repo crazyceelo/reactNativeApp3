@@ -10,6 +10,7 @@ import reducers from "./src/reducers";
 
 // components
 import { Header } from "./src/components/common";
+import LibraryList from "./src/components/LibraryList";
 
 export default class App extends React.Component {
   render() {
@@ -17,6 +18,7 @@ export default class App extends React.Component {
       <Provider store={createStore(reducers)}>
         <View style={styles.container}>
           <Header headerText="Tech Stack" />
+          <LibraryList />
         </View>
       </Provider>
     );
