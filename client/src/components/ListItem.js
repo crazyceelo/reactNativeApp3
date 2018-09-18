@@ -1,15 +1,25 @@
 import React, { Component } from "react";
 import { CardSection } from "./common";
-import { Text, StyleSheet } from "react-native";
+import { connect } from "react-redux";
+import { Text, StyleSheet, TouchableWithoutFeedback, View } from "react-native";
+import * as actions from "../actions";
 
 class ListItem extends Component {
   render() {
     const { titleStyle } = styles;
 
     return (
-      <CardSection>
-        <Text style={titleStyle}> {this.props.library.item.title}</Text>
-      </CardSection>
+      <TouchableWithoutFeedback
+        onPress={() => {
+          this.props.selectedLibrary(this.props.library.item.id);
+        }}
+      >
+        <View>
+          <CardSection>
+            <Text style={titleStyle}> {this.props.library.item.title}</Text>
+          </CardSection>
+        </View>
+      </TouchableWithoutFeedback>
     );
   }
 }
@@ -21,4 +31,7 @@ const styles = StyleSheet.create({
   }
 });
 
-export default ListItem;
+export default connect(
+  null,
+  actions
+)(ListItem);
