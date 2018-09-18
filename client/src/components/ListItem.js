@@ -5,6 +5,12 @@ import { Text, StyleSheet, TouchableWithoutFeedback, View } from "react-native";
 import * as actions from "../actions";
 
 class ListItem extends Component {
+  renderDescription() {
+    if (this.props.library.item.id === this.props.selectedLibraryId) {
+      return <Text>{this.props.library.item.description}</Text>;
+    }
+  }
+
   render() {
     const { titleStyle } = styles;
 
@@ -18,6 +24,7 @@ class ListItem extends Component {
           <CardSection>
             <Text style={titleStyle}> {this.props.library.item.title}</Text>
           </CardSection>
+          {this.renderDescription()}
         </View>
       </TouchableWithoutFeedback>
     );
@@ -31,7 +38,13 @@ const styles = StyleSheet.create({
   }
 });
 
+const mapStateToProps = state => {
+  return {
+    selectedLibraryId: state.selectedLibraryId
+  };
+};
+
 export default connect(
-  null,
+  mapStateToProps,
   actions
 )(ListItem);
